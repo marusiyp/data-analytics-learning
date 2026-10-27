@@ -1,11 +1,14 @@
-   # Jupyter
-   .ipynb_checkpoints/
+# Jupyter
+.ipynb_checkpoints/
 
-   # Python
-   __pycache__/
+# Python
+__pycache__/
 
-   # Secrets (passwords, keys)
-   .env
+# Secrets (passwords, keys)
+.env
 
-   # Power BI temporary files
-   *.pbix.bak
+# Power BI temporary files
+*.pbix.bak
+
+# Local data exports
+data/
