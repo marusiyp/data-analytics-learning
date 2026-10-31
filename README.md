@@ -1,35 +1,41 @@
 # Data Analytics Learning
 
 Practice projects from my path into data analytics: SQL, Python (pandas, NumPy) and Power BI.
-All analyses use the MySQL sample database *sakila*, a fictional DVD rental store.
 
 ## Projects
 
-| # | Notebook | What it covers | Key skills |
-|---|---|---|---|
-| 1 | [Exploratory analysis](notebooks/01_pandas_sakila.ipynb) | 21 business questions on revenue, customers, the film catalogue and rentals | filtering, grouping, dates, binning, pivot tables |
-| 2 | [Combining tables](notebooks/02_pandas_merge_sakila.ipynb) | 6 questions that need data from up to 5 related tables | merges, merge validation, cross-tabs, anti-joins |
+| # | Notebook | Data | What it covers | Key skills |
+|---|---|---|---|---|
+| 1 | [Exploratory analysis](notebooks/01_pandas_sakila.ipynb) | sakila (MySQL) | 21 business questions on revenue, customers, the film catalogue and rentals | filtering, grouping, dates, binning, pivot tables |
+| 2 | [Combining tables](notebooks/02_pandas_merge_sakila.ipynb) | sakila (MySQL) | 6 questions that need data from up to 5 related tables | merges, merge validation, cross-tabs, anti-joins |
+| 3 | [Loan applications: cleaning and EDA](notebooks/03_loan_cleaning_eda.ipynb) | [Kaggle loan data](https://www.kaggle.com/datasets/burak3ergun/loan-data-set) | cleaning 614 loan applications, building affordability features and finding what drives approval | missing-value strategy, outliers (IQR), feature engineering, functions |
 
-Every notebook ends with a summary of findings, and results are cross-checked against SQL queries.
+Every notebook ends with a summary of findings. The sakila results are cross-checked against SQL queries.
 
 ## Key findings
 
+**Sakila DVD rental (notebooks 1–2)**
 - **Revenue:** 67,406.56 from 16,044 payments; July 2005 alone brought about 42% of it.
-- **Payments:** a typical payment is 3.99 (median), below the mean of 4.20, so amounts are right-skewed.
 - **Stores:** both stores' stock earns the same, and customers rent about half their DVDs from the store they are not registered at.
 - **Catalogue:** all 42 never-rented films are titles the store has no copy of, so unrented titles are a stock issue, not a demand issue.
 - **Data quality:** all 182 rentals from February 2006 are unreturned, which shows the dataset ends partway through that month.
 
+**Loan applications (notebook 3)**
+- **Credit history** drives approval: 79.6% approved with a good history vs 7.9% with a bad one. A missing history (74.0%) behaves like a good one, so it was kept as its own category instead of being guessed.
+- **Affordability** matters only at the extreme: approval stays at about 70% while repayments take up to 25% of income, but drops to 38.5% above 40%. Even with a good credit history, it falls from about 80% to 30%.
+- `Loan_Status` records **approval, not repayment**, and the 9% interest rate used for repayments is an assumption.
+
 ## How to run
 
-1. Install MySQL 8 with the [sakila sample database](https://dev.mysql.com/doc/sakila/en/).
-2. Create the environment:
+1. Create the environment:
    ```bash
-   conda create -n da python=3.12 pandas numpy matplotlib jupyter sqlalchemy pymysql
+   conda create -n da python=3.12 pandas numpy matplotlib seaborn jupyter sqlalchemy pymysql
    conda activate da
    ```
-3. Open a notebook and run all cells. The MySQL password is requested at runtime and never stored.
+2. **Notebooks 1–2:** install MySQL 8 with the [sakila sample database](https://dev.mysql.com/doc/sakila/en/). The MySQL password is requested at runtime and never stored.
+3. **Notebook 3:** download the [loan dataset](https://www.kaggle.com/datasets/burak3ergun/loan-data-set) and save it as `data/loan_data_set.csv`. Data files are not stored in this repository.
+4. Open a notebook and run all cells.
 
 ## Skills
 
-SQL (joins, CTEs, window functions) · pandas · data cleaning · exploratory analysis · Git
+SQL (joins, CTEs, window functions) · pandas · data cleaning · feature engineering · exploratory analysis · Git
