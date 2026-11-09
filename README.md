@@ -1,6 +1,6 @@
 # Data Analytics Learning
 
-Practice projects from my path into data analytics: SQL, Python (pandas, NumPy) and Power BI.
+Data analysis projects using SQL and Python (pandas, NumPy, Matplotlib, seaborn). Each notebook answers business questions and ends with a summary of findings.
 
 ## Projects
 
